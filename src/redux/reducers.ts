@@ -16,3 +16,13 @@ export const notesReducer = (state: data = { "Pizza": 'ham'}, action: data) => {
             return state
     }
 }
+
+
+export const currentNoteReducer = (state: string = "", action: data) => {
+    switch (action.type){
+        case 'CURRENT_NOTE':
+            return state = action.note
+        default:
+            return state
+    }
+}

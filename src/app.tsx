@@ -8,9 +8,7 @@ import './styles/styles.scss';
 const App = () => {
     return (
         <Provider store={store}>
-            <div>
-                <SideBar/>
-            </div>
+            <SideBar />
         </Provider>
     );
 }

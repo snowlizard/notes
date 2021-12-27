@@ -17,3 +17,9 @@ export const deleteNote = (note: string) => {
     };
 }
 
+export const currentNote = (note: string) => {
+    return {
+        type: 'CURRENT_NOTE',
+        note
+    }
+}

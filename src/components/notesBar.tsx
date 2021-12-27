@@ -1,5 +1,5 @@
 import * as React from "react";
-import { deleteNote } from "../redux/actions";
+import { deleteNote, currentNote } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { List, ListItemButton, ListItemText, ListItemIcon} from "@mui/material";
 import { DeleteForeverOutlined } from "@mui/icons-material";
@@ -12,7 +12,7 @@ export const NotesList = (props: any) => {
     }
 
     const listItemAction = (key: string) => {
-        console.log(key)
+        dispatch(currentNote(key));
     }
     return (
         <List component="nav">

@@ -11,7 +11,8 @@ interface obj {
 
 export const SideBar = () => {
     const [noteName, setNoteName] = useState('');
-    const notes = useSelector((state: RootStateOrAny) => { return state })
+    const notes = useSelector((state: RootStateOrAny) => { return state.notesReducer })
+    const currNote = useSelector( (state: RootStateOrAny) => { return state.currentNoteReducer})
 
     const dispatch = useDispatch();
 
@@ -20,7 +21,6 @@ export const SideBar = () => {
         let note: obj = {};
         note[noteName] = "";
         dispatch(addNote(note));
-
     }
 
     return (
@@ -37,8 +37,13 @@ export const SideBar = () => {
                 >Add</Button>
             </div>
             <Divider variant="middle"/>
-
             <NotesList  notes={notes}/>
+
+            <textarea>
+            {
+                notes[currNote]
+            }
+            </textarea>
         </div>
     );
 }
