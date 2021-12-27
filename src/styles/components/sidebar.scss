@@ -1,0 +1,15 @@
+#sideBar{
+    width: 25%;
+    height: 100%;
+}
+
+#sideBar_components{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+}
+
+#sideBar_components > button{
+    margin-left: .5em;
+}
