@@ -3,7 +3,7 @@ import { useState } from "react";
 import { NotesList } from "./notesBar";
 import { addNote } from "../redux/actions";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { TextField, Button, Divider, List } from "@mui/material";
+import { TextField, Button, Divider } from "@mui/material";
 
 interface obj {
     [key: string]: any
@@ -39,11 +39,6 @@ export const SideBar = () => {
             <Divider variant="middle"/>
             <NotesList  notes={notes}/>
 
-            <textarea>
-            {
-                notes[currNote]
-            }
-            </textarea>
         </div>
     );
 }

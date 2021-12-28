@@ -2,13 +2,14 @@ import * as React from "react";
 import * as ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
-import { SideBar } from "./components/sideBar";
+import { Main } from "./components/main";
 import './styles/styles.scss';
+
 
 const App = () => {
     return (
         <Provider store={store}>
-            <SideBar />
+            <Main />
         </Provider>
     );
 }
