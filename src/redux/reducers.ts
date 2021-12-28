@@ -1,14 +1,24 @@
 interface data {
     [key: string]: any
 }
- 
-export const notesReducer = (state: data = { "Pizza": 'ham'}, action: data) => {
+
+
+let notes: data = JSON.parse(localStorage.getItem('notes'));
+if ( notes === null){
+    // @ts-ignore
+    notes = localStorage.setItem('notes', JSON.stringify({}));
+    notes = JSON.parse(localStorage.getItem('notes'));
+}
+
+export const notesReducer = (state: data = notes, action: data) => {
     switch (action.type){
         case 'ADD_NOTE':
-            return {
+            state = {
                 ...state,
                 ...action.note
             }
+            localStorage.setItem('notes', JSON.stringify(state));
+            return state
         case 'DELETE_NOTE':
             delete state[action.note]
             return { ... state}
