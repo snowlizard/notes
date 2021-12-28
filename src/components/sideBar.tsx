@@ -12,7 +12,6 @@ interface obj {
 export const SideBar = () => {
     const [noteName, setNoteName] = useState('');
     const notes = useSelector((state: RootStateOrAny) => { return state.notesReducer })
-    const currNote = useSelector( (state: RootStateOrAny) => { return state.currentNoteReducer})
 
     const dispatch = useDispatch();
 

@@ -1,0 +1,24 @@
+#main {
+    display: flex;
+    height: 100%;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+}
+
+#text {
+    margin-left: .5em;
+    width: 73%;
+    height: 100%;
+    background-color: red;
+}
+
+#text > textarea{
+    width: 100%;
+    height: 100%;
+    border-style: none;
+    outline: none;
+    border-color: transparent;
+}
