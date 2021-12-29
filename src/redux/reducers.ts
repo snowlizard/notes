@@ -18,12 +18,13 @@ export const notesReducer = (state: data = notes, action: data) => {
                 ...action.note
             }
             localStorage.setItem('notes', JSON.stringify(state));
-            return state
+            return state;
         case 'DELETE_NOTE':
-            delete state[action.note]
-            return { ... state}
+            delete state[action.note];
+            localStorage.setItem('notes', JSON.stringify({...state}));
+            return { ... state};
         default:
-            return state
+            return state;
     }
 }
 
@@ -31,8 +32,8 @@ export const notesReducer = (state: data = notes, action: data) => {
 export const currentNoteReducer = (state: string = "", action: data) => {
     switch (action.type){
         case 'CURRENT_NOTE':
-            return state = action.note
+            return state = action.note;
         default:
-            return state
+            return state;
     }
 }

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SideBar } from "./sideBar";
+import { FontWidget } from "./fontStyles";
 import { addNote } from "../redux/actions";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
-import { Divider } from "@mui/material";
 
 interface obj {
     [key: string]: any
@@ -23,6 +23,7 @@ export const Main = () => {
         <div id="main">
             <SideBar />
             <div id="text">
+                <FontWidget />
                 <textarea
                 value={notes[currNote]}
                 onChange={ (e) => { handleChange(e) } }>

@@ -11,8 +11,13 @@
     overflow: hidden;
     margin-left: .6em;
     width: 75%;
-    height: 100vh;
-    background-color: red;
+    height: 98vh;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#text_styles{
+    height: 3em;
 }
 
 #text > textarea{
