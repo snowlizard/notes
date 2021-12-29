@@ -22,7 +22,7 @@ export const Main = () => {
     return (
         <div id="main">
             <SideBar />
-            <Divider orientation="vertical" variant="middle" />
+            <Divider id="vertDivider" orientation="vertical" variant="middle" />
             <div id="text">
                 <textarea
                 value={notes[currNote]}

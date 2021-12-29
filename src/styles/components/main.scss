@@ -1,6 +1,5 @@
 #main {
     display: flex;
-    height: 100%;
 }
 
 #app {
@@ -9,9 +8,10 @@
 }
 
 #text {
-    margin-left: .5em;
-    width: 73%;
-    height: 100%;
+    overflow: hidden;
+    margin-left: .6em;
+    width: 75%;
+    height: 100vh;
     background-color: red;
 }
 

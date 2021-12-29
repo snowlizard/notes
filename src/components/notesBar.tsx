@@ -15,7 +15,7 @@ export const NotesList = (props: any) => {
         dispatch(currentNote(key));
     }
     return (
-        <List component="nav">
+        <List id="notesList" component="nav">
         {
             Object.keys(props.notes).map( key => {
                 return (

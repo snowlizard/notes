@@ -13,3 +13,17 @@
 #sideBar_components > button{
     margin-left: .5em;
 }
+
+#notesList {
+    position: fixed;
+    width: 24%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: none;
+}
+
+#vertDivider{
+    left: 24.5%;
+    position: fixed;
+}
