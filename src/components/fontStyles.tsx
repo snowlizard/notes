@@ -1,29 +1,49 @@
 import * as React from "react";
-import { IconButton } from "@mui/material";
+import { useState } from "react";
+import Box from '@mui/material/Box';
+import { IconButton, ClickAwayListener } from "@mui/material";
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Color, createColor, ColorBox } from "material-ui-color";
+
 
 const fontSizes: Array<string> = ['10pt', '12pt', '14pt', '16pt',
                                 '18pt', '24pt', '30pt', '36pt', '48pt',
                                 '60pt', '72pt', '84pt'];
 
 export const FontWidget = () => {
-    const [ fSize, setSize] = React.useState('10pt');
-    const [ bold, setBold] = React.useState(false)
+    const [ fSize, setSize] = useState('10pt');
+    const [ bold, setBold] = useState(false);
+    const [ color, setColor] = useState(createColor('black'));
+
+    const [ open, setOpen] = useState(false);
 
     React.useEffect( () => {
+        // font size
         document.querySelector('textarea').style.fontSize = fSize;
         
+        // font weight
         bold ? document.querySelector('textarea').style.fontWeight = 'bold' :
         document.querySelector('textarea').style.fontWeight = 'normal';
 
-    }, [fSize, bold]);
+        // font color
+        document.querySelector('textarea').style.color = '#'+ color.hex;
+
+    }, [fSize, bold, color]);
 
     const handleChange = (e: SelectChangeEvent) => {
         setSize(e.target.value);
+    }
+
+    const handleColorChange = (newColor: Color) => {
+        setColor(newColor);
+    }
+
+    const handleClickAway = () => {
+        setOpen(false)
     }
 
     return (
@@ -45,10 +65,23 @@ export const FontWidget = () => {
                     }
                 </Select>
             </FormControl>
-
-            <IconButton>
-                <ColorLensIcon />
-            </IconButton>
+        
+            <ClickAwayListener
+            onClickAway={handleClickAway}>
+                <Box sx={ {position: 'relative'}}>
+                    <IconButton onClick={ () => setOpen(!open) }>
+                        <ColorLensIcon />
+                    </IconButton>
+                    {
+                        open ? (
+                            <div id="color-box">
+                                <ColorBox value={color}
+                                onChange={ handleColorChange } />
+                            </div>)
+                        : null
+                    }
+                </Box>
+            </ClickAwayListener>
 
             <IconButton
             onClick={ () => setBold(!bold) }>
