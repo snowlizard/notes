@@ -23,7 +23,16 @@
     border: none;
 }
 
+.noteItems{
+    display: flex;
+}
+
 #vertDivider{
     left: 24.5%;
     position: fixed;
+}
+
+#currentNote{
+    text-align: center;
+    padding-bottom: .5em;
 }

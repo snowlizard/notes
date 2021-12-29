@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { NotesList } from "./notesBar";
-import { addNote } from "../redux/actions";
+import { addNote, currentNote } from "../redux/actions";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { TextField, Button, Divider } from "@mui/material";
 
@@ -12,20 +12,26 @@ interface obj {
 export const SideBar = () => {
     const [noteName, setNoteName] = useState('');
     const notes = useSelector((state: RootStateOrAny) => { return state.notesReducer })
+    const currNote = useSelector((state: RootStateOrAny) => { return state.currentNoteReducer })
 
     const dispatch = useDispatch();
 
 
     const addNewNote = () => {
         let note: obj = {};
-        note[noteName] = "";
-        dispatch(addNote(note));
+        
+        if (notes.hasOwnProperty(noteName)){
+            dispatch(currentNote(noteName));
+        }else{
+            note[noteName] = "";
+            dispatch(addNote(note));
+        }
     }
 
     return (
         <div id="sideBar">
             <div id="sideBar_components">
-                <TextField id="addNoteField" label="add note"
+                <TextField id="addNoteField" label="add/select note"
                 variant="filled" size="small"
                 onKeyPress={ (e) => { if(e.key === 'Enter') addNewNote() }}
                 onChange={ (e) => { setNoteName(e.target.value)}}>
@@ -35,9 +41,11 @@ export const SideBar = () => {
                 size="medium" onClick={ addNewNote }
                 >Add</Button>
             </div>
+            <p id="currentNote">
+                { currNote }
+            </p>
             <Divider variant="middle"/>
             <NotesList  notes={notes}/>
-
         </div>
     );
 }

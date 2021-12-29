@@ -2,6 +2,7 @@ import * as React from "react";
 import { deleteNote, currentNote } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { List, ListItemButton, ListItemText, ListItemIcon, Divider} from "@mui/material";
+import { IconButton } from "@mui/material";
 import { DeleteForeverOutlined } from "@mui/icons-material";
 
 export const NotesList = (props: any) => {
@@ -19,12 +20,13 @@ export const NotesList = (props: any) => {
         {
             Object.keys(props.notes).map( key => {
                 return (
-                    <div key={key + "1"}>
+                    <div className="noteItems" key={key + "1"}>
+                        <IconButton aria-label="delete"
+                        onClick={ () => deleteData(key) }>
+                            <DeleteForeverOutlined />
+                        </IconButton>
                         <ListItemButton 
                             onClick={ () => listItemAction(key) }>
-                            <ListItemIcon onClick={ () => deleteData(key) }>
-                                <DeleteForeverOutlined />
-                            </ListItemIcon>
                             <ListItemText>
                                 {key}
                             </ListItemText>
