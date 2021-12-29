@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Box from '@mui/material/Box';
 import { IconButton, ClickAwayListener } from "@mui/material";
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
@@ -20,17 +20,26 @@ export const FontWidget = () => {
     const [ color, setColor] = useState(createColor('black'));
 
     const [ open, setOpen] = useState(false);
+    
 
-    React.useEffect( () => {
+    useEffect( () => {
+        const text_area = document.getElementById('text_area');
+        const selection = document.getSelection()
+
+        // left off right here
+        if (selection.containsNode(text_area, true)){
+            selection.toString()
+        }
+
         // font size
-        document.querySelector('textarea').style.fontSize = fSize;
+        text_area.style.fontSize = fSize;
         
         // font weight
-        bold ? document.querySelector('textarea').style.fontWeight = 'bold' :
-        document.querySelector('textarea').style.fontWeight = 'normal';
+        bold ? text_area.style.fontWeight = 'bold' :
+        text_area.style.fontWeight = 'normal';
 
         // font color
-        document.querySelector('textarea').style.color = '#'+ color.hex;
+        text_area.style.color = '#'+ color.hex;
 
     }, [fSize, bold, color]);
 

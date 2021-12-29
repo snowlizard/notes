@@ -14,6 +14,7 @@ export const Main = () => {
     const dispatch = useDispatch();
 
     const handleChange = (e: any) => {
+        e.preventDefault();
         let note: obj = {};
         note[currNote] = e.target.value;
         dispatch(addNote(note));
@@ -24,10 +25,12 @@ export const Main = () => {
             <SideBar />
             <div id="text">
                 <FontWidget />
-                <textarea
-                value={notes[currNote]}
+                <div
+                id="text_area"
+                contentEditable={true}
                 onChange={ (e) => { handleChange(e) } }>
-                </textarea>
+                    {notes[currNote]}
+                </div>
             </div>
         </div>
     );

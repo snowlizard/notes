@@ -11,12 +11,17 @@ interface obj {
 
 export const SideBar = () => {
     const [noteName, setNoteName] = useState('');
-    const notes = useSelector((state: RootStateOrAny) => { return state.notesReducer })
-    const currNote = useSelector((state: RootStateOrAny) => { return state.currentNoteReducer })
-
+    const notes = useSelector((state: RootStateOrAny) => { return state.notesReducer });
+    const currNote = useSelector((state: RootStateOrAny) => { return state.currentNoteReducer });
     const dispatch = useDispatch();
 
+    // set the current note to the first available note
+    if(currNote === '' && Object.keys(notes).length > 0 ){
+        dispatch(currentNote(Object.keys(notes)[0]))
+    };
 
+    // creates new note if note exists set it as
+    // the current note
     const addNewNote = () => {
         let note: obj = {};
         
