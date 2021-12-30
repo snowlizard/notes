@@ -1,8 +1,9 @@
 import * as React from "react";
 import { SideBar } from "./sideBar";
-import { FontWidget } from "./fontStyles";
 import { addNote } from "../redux/actions";
 import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
+
+import { CKEditor } from 'ckeditor4-react';
 
 interface obj {
     [key: string]: any
@@ -24,14 +25,20 @@ export const Main = () => {
         <div id="main">
             <SideBar />
             <div id="text">
-                <FontWidget />
-                <div
-                id="text_area"
-                contentEditable={true}
-                onChange={ (e) => { handleChange(e) } }>
-                    {notes[currNote]}
-                </div>
+                <CKEditor
+                config={ {bodyClass: "ckeditor"}}
+                initData={<p>{ notes[currNote]}</p>}/>
             </div>
         </div>
     );
 }
+
+
+{/* <div id="text">
+<div
+id="text_area"
+contentEditable={true}
+onChange={ (e) => { handleChange(e) } }>
+    <p>{notes[currNote]}</p>
+</div>
+</div> */}
