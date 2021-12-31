@@ -18,25 +18,22 @@ export const MyEditor = () => {
         : 'do nothing';
     }, [currNote]);
 
-    if ( ckeditor !== null ){
-        // working but do not use makes browser window
-        // over work and makes window unresponsive
-
-        // ckeditor.model.document.on('change:data', () => {
-        //     const data = ckeditor.getData();
-
-        //     let note= {}
-        //     note[currNote] = data
-        //     dispatch(addNote(note));
-        // });
-    }
-
     return (
         <div id="text">
             <CKEditor
                 editor={ Editor }
                 data={notes[currNote]}
                 onReady={ (editor) => setEditor(editor) }
+                config={{
+                    autosave: {
+                        save(editor){
+                            const data = editor.getData();
+                            let note= {}
+                            note[currNote] = data
+                            dispatch(addNote(note));
+                        }
+                    }
+                }}
                 />
         </div>
     );
