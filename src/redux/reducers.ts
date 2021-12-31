@@ -28,7 +28,6 @@ export const notesReducer = (state: data = notes, action: data) => {
     }
 }
 
-
 export const currentNoteReducer = (state: string = "", action: data) => {
     switch (action.type){
         case 'CURRENT_NOTE':
