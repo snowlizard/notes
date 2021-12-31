@@ -32,11 +32,12 @@ export const MyEditor = () => {
     }
 
     return (
+        <div id="text">
             <CKEditor
-                id='editor'
                 editor={ Editor }
                 data={notes[currNote]}
                 onReady={ (editor) => setEditor(editor) }
                 />
+        </div>
     );
 }

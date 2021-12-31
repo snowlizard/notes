@@ -6,9 +6,7 @@ export const Main = () => {
     return (
         <div id="main">
             <SideBar />
-            <div id="text">
-                <MyEditor />
-            </div>
+            <MyEditor />
         </div>
     );
 }
