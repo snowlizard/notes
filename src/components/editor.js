@@ -6,31 +6,40 @@ import { addNote } from "../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 
-
 export const MyEditor = () => {
     const notes = useSelector((state) => { return state.notesReducer });
     const currNote = useSelector( (state) => { return state.currentNoteReducer});
+
     const [ckeditor, setEditor] = useState(null);
+
     const dispatch = useDispatch();
 
     useEffect( () => {
-        ckeditor !== null ? ckeditor.setData(notes[currNote])
-        : 'do nothing';
+        if(ckeditor !== null){
+            ckeditor.setData(notes[currNote])
+        }
     }, [currNote]);
+
+    const saveData = (editor) => {
+        if(editor !== null){
+            const data = editor.getData();
+            let note = {};
+            note[currNote] = data;
+            console.log(currNote);
+            dispatch(addNote(note));
+        }
+    }
 
     return (
         <div id="text">
             <CKEditor
                 editor={ Editor }
                 data={notes[currNote]}
-                onReady={ (editor) => setEditor(editor) }
+                onReady={ editor => setEditor(editor) }
                 config={{
                     autosave: {
                         save(editor){
-                            const data = editor.getData();
-                            let note= {}
-                            note[currNote] = data
-                            dispatch(addNote(note));
+                            saveData(editor)
                         }
                     }
                 }}
