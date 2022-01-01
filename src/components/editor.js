@@ -20,7 +20,6 @@ export const MyEditor = () => {
             const data = editor.getData();
             let note = {};
             note[currNote] = data;
-            console.log(currNote);
             dispatch(addNote(note));
         }
     }
