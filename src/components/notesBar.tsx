@@ -10,8 +10,11 @@ export const NotesList = (props: any) => {
     const dispatch = useDispatch();
 
     const deleteData = (key: string) => {
+        Object.keys(notes).length === 1 ?
+            dispatch(currentNote("")) :
+            dispatch(currentNote(Object.keys(notes)[0]));
         dispatch(deleteNote(key));
-        dispatch(currentNote(Object.keys(notes)[0]));
+
     }
 
     const listItemAction = (key: string) => {
@@ -33,7 +36,6 @@ export const NotesList = (props: any) => {
                                 {key}
                             </ListItemText>
                         </ListItemButton>
-                        <Divider variant="middle" />
                     </div>
                 );
             })

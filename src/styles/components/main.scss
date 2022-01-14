@@ -1,5 +1,9 @@
 #main {
     display: flex;
+	margin: 0%;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 #app {
@@ -7,23 +11,12 @@
     height: 100vh;
 }
 
-.editor__editable,
-/* Classic build. */
-main .ck-editor[role='application'] .ck.ck-content,
-/* Decoupled document build. */
-.ck.editor__editable[role='textbox'],
-.ck.ck-editor__editable[role='textbox'],
-/* Inline & Balloon build. */
-.ck.editor[role='textbox'] {
-	width: 75vw;
+.ck.ck-editor {
+	width: 60vw;
 	background: #fff;
 	font-size: 1em;
 	line-height: 1.6em;
-	min-height: 92vh;
-	padding: 1.5em 2em;
-}
-
-main .ck-editor[role='application'] {
+	max-height: 100%;
+	margin: 0;
 	overflow: auto;
 }
-

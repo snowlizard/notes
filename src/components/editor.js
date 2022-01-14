@@ -28,7 +28,7 @@ export const MyEditor = () => {
         <div id="text">
             <CKEditor
                 editor={ Editor }
-                data={notes[currNote]}
+                data={notes[currNote] !== undefined ? notes[currNote] : "" }
                 onReady={ editor => setEditor(editor) }
                 onChange={ () => {
                     chars += 1;
